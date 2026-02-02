@@ -1,0 +1,12 @@
+build/
+install/
+log/
+
+# 临时文件
+*.swp
+*~
+.DS_Store
+
+# IDE配置（根据需要添加）
+.vscode/
+.idea/
