@@ -181,8 +181,25 @@ typedef struct
 } map_data_t;
 #pragma pack()
 
+typedef union {
+    uint8_t buff[16]; 
+    struct {
+        uint8_t SOF;
+        chassis_ctrl_info_t ctrl_data; 
+        uint8_t EOF1;
+        uint8_t EOF2;
+    } __attribute__((packed)) data; 
+} nav_ctrl_t;
 
-
+typedef union {
+    uint8_t buff[51];
+    struct {
+        uint8_t SOF;
+        chassis_odom_info_t odom_data; 
+        uint8_t EOF1;
+        uint8_t EOF2;
+    } __attribute__((packed)) data;
+} nav_odom_t;
 
 
 #pragma pack(pop)
