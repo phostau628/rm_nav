@@ -23,5 +23,5 @@ gnome-terminal --window --title=""\
 # --tab --title="rm_vision_bringup" -e "bash -c 'source ~/github_code/rmvision_ws/install/setup.bash;ros2 launch rm_vision_bringup test.launch.py ; exec bash'" \
 # --tab --title="omnidirectional_perception" -e "bash -c '$source_common;ros2 launch omnidirectional_perception omnidirectional_perception.launch.py; exec bash'" \
 #--tab --title="auto_decision" -e "bash -c '$source_common;ros2 run auto_decision_RMUC navigation_check_node; exec bash'" \
-#--tab --title="rm_vision_bringup" -e "bash -c 'source ~/github_code/rmvision_ws/install/setup.bash;ros2 launch rm_vision_bringup three_camera.launch.py ; exec bash'" \
+#--tab --title="rm_vision_bringup" -e "bash -c 'source ~/github++_code/rmvision_ws/install/setup.bash;ros2 launch rm_vision_bringup three_camera.launch.py ; exec bash'" \
 --hide-menubar

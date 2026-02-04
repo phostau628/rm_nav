@@ -15,8 +15,6 @@
 #include "auto_aim_interfaces/msg/gimbal_ctrl.hpp" 
 #include "auto_aim_interfaces/msg/gimbal_fdb.hpp" 
 #include "auto_aim_interfaces/msg/fdb.hpp"
-#include <nav_msgs/msg/odometry.hpp> // 【新增】里程计消息
-#include <tf2/LinearMath/Quaternion.h> // 【新增】用于计算四元数
 
 namespace rm_auto_aim
 {
@@ -34,13 +32,11 @@ private:
   vision_rx_t vision_rx_data_;
   fdb_rx_t fdb_rx_data_;
 
-  nav_odom_t nav_odom_rx_data_; 
-
   float timestamp_offset_;
   std::shared_ptr<::robomaster::SerialDevice> device_ptr_;
   std::unique_ptr<uint8_t[]> recv_buff_;
   std::unique_ptr<uint8_t[]> send_buff_;
-  const unsigned int BUFF_LENGTH = 128;//buff length //改
+  const unsigned int BUFF_LENGTH = 21;//buff length
   const unsigned int BUFF_LENGTH_SEND = 23;//buff length
 
   // 接受/发送的数据帧头
@@ -51,7 +47,9 @@ private:
 
   rclcpp::Subscription<auto_aim_interfaces::msg::GimbalCtrl>::SharedPtr gimbal_ctrl_sub_;
   rclcpp::Subscription<auto_aim_interfaces::msg::Fdb>::SharedPtr fdb_sub_;
-  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_; //新增
+
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
+  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_;
 
   // 创建tf广播器，用于广播world到gimbal的变换
   std::shared_ptr<tf2_ros::TransformBroadcaster> gimbal_tf_broadcaster;
